@@ -1,0 +1,15 @@
+
+// Here we have first calulated the last bit by using & , and then we created the space of one digit to be added on ans , then we added that digit, after that we have keep this process until we stop encounter 0 and 1 since its 32 bit 
+
+class Solution {
+public:
+    int reverseBits(int n) {
+        int ans=0;
+        for(int bitnumber=0;bitnumber<32;bitnumber++){
+         int bit=n & 1;
+         ans=(ans<<=1) |=bit;
+         n>>=1;
+        }
+    return ans;
+    }
+};
