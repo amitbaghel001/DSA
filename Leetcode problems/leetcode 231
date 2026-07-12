@@ -1,0 +1,28 @@
+//brute force//
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if(n <= 0) return false;
+
+        for(int x = 0; x <= log2(n); x++){
+            if((double)n == pow(2, x))
+                return true;
+        }
+
+        return false;
+    }
+};
+
+//optimal//
+
+
+//simple hai yaar dekh if we have any  numbers in theform of 2 ki power they have only one 1 in their binary , so just reduce this number by 1 ab n-1 ho gya (have all 1s except woh jo 1 us number me hoga eg. n ) 
+// now take & of n and n-1 simple hai ig 2 ki power ka hai means sb zero nhi h means not , since negative numbers can't be 
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+    if( (n>0) && (n & (n-1))==0) return true;
+    return false;
+    }
+};
