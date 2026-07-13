@@ -1,0 +1,22 @@
+// Approach: simply sare substring calculate kr iye and for a count we made a hash if the count exceeds 1 wew will not check break it and use maxlen variable to make its value change as the len changes :
+// O(N^2)
+// // S(256)
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.length();
+        int maxlen=0;
+        for(int i=0;i<n;i++){
+           int len=-1;
+            int hash[256]={0};
+            for(int j=i;j<n;j++){
+                hash[s[j]]++;
+                if(hash[s[j]]>1) break;
+                len=j-i+1;
+            }
+            maxlen=max(maxlen,len);
+        }
+        return maxlen;
+    }
+};
