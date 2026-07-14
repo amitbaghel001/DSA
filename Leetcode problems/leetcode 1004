@@ -29,3 +29,32 @@ public:
         return maxlen;
     }
 };
+
+
+//optimal
+
+// Approach:Lets take 2 pointers l=0,r=0  and maxlen=0 and now lets move r till n and count krte hn no. of zeroes in the window , if count <k then no dikkat seedhe maxlen ko change krenge and r++ krdenge, if count>k then l ko badhana pdega and check if the arr[l]==0 then hame skip toh krna hi h yeh bcz count>k but we have to do count-- also , then move on 
+// TC=O(N)
+// SC=O(1)
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int n=nums.size();
+        int l=0,r=0;
+        int maxlen=0;
+        int count=0;
+        while(r<n){
+            if(nums[r]==0) count++;
+            while(count> k){
+               if(nums[l]==0){
+                    count--;
+                }
+                l++;
+            }
+            maxlen=max(maxlen,r-l+1);
+            r++;
+        }
+        return maxlen;
+        }
+};
