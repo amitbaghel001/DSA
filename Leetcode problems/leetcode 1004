@@ -1,0 +1,31 @@
+// Approach:
+// Simple 2 loops(nested) use krenge check krenge for = 1 count++, for 0 we will count++ until we have k , and as the consecutive is not 1 and k is not> than 0 , then break;
+// // maxlen me length store kr lenge
+
+
+// brute force 
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int n=nums.size();
+        int maxlen=0;
+        
+        for(int i=0 ;i<n ;i++){
+            int count=0;
+            int t=k;
+            for(int j=i;j<n;j++){
+                if(nums[j]==1) count++;
+                else if(t>0){
+                    // nums[i]=1;
+                    t--;
+                    count++;
+                }
+                else{
+                    break;
+                }
+                maxlen=max(maxlen,count);
+            }
+        }
+        return maxlen;
+    }
+};
