@@ -1,0 +1,30 @@
+// Brute force approach:
+// simply nested loop lgao and ek variable bna lo to store answers , and usko update kro for the case of the , 
+// pehle hash array me sbke count =0 krdo then in apni sliding window me sbke count nikaal lo , so that maxcount-length agr k se less then or equals to hai then , ans me update krdo wrna break krdo
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+    int n=s.length();
+    
+    int ans=0;
+    for(int i=0 ;i <n; i++){
+        int len=0;
+        int maxfreq=0;
+        int hash[26]={0};
+        for(int j=i ;j<n;j++){
+            hash[s[j]-'A']++;
+            maxfreq=max(maxfreq ,hash[s[j]-'A']);
+
+            len=j-i+1;
+            if(len-maxfreq<=k){
+                ans=max(ans,len);
+            }
+            else{
+                break;
+            }
+        }
+    }
+    return ans;
+    }
+};
