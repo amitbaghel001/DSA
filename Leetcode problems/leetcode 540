@@ -1,0 +1,62 @@
+// Approach:
+//
+// 1. Apply Binary Search.
+// 2. Find the middle element.
+// 3. Check its adjacent elements:
+//      - If nums[mid] == nums[mid + 1], store their indices as:
+//            x = mid, y = mid + 1
+//      - Else if nums[mid] == nums[mid - 1], store:
+//            x = mid - 1, y = mid
+//      - Otherwise, nums[mid] has no equal neighbour,
+//        so it is the single non-duplicate element.
+//
+// 4. Once the duplicate pair (x, y) is found,
+//    observe its indices:
+//      - If x is odd and y is even,
+//        the single element lies on the left side.
+//      - Otherwise (x even, y odd),
+//        the single element lies on the right side.
+//
+// 5. Continue binary search until the single element is found.
+//
+// Time Complexity: O(log n)
+// Space Complexity: O(1)
+
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int n=nums.size();
+        int l=0;
+        int h=n-1;
+
+        while(l<=h){
+            int mid=l+(h-l)/2;
+
+            int x=-1;
+            int y=-1;
+
+            if(mid>0 && nums[mid]==nums[mid-1]) { 
+                x=mid-1;
+                y=mid;
+                } 
+
+            else if(mid<n-1 && nums[mid]==nums[mid+1]){
+                x=mid;
+                y=mid+1;
+                }
+
+            else{
+                return nums[mid];
+            }
+
+            if(x %2 !=0 && y%2 ==0){
+                    h=mid-1;
+                }
+            else{
+                    l=mid+1;
+                }
+        }
+        return -1;
+    }
+};
